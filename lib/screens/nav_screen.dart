@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube_ui/screens/home_screen.dart';
 
 class NavScreen extends StatefulWidget {
   @override
@@ -7,16 +8,37 @@ class NavScreen extends StatefulWidget {
 
 class _NavScreenState extends State<NavScreen> {
   int _selectedIndex = 0;
+
+  final _screens = [
+    HomeScreen(),
+    const Scaffold(body: Center(child: Text("Explore"))),
+    const Scaffold(body: Center(child: Text("Add"))),
+    const Scaffold(body: Center(child: Text("Subscriptions"))),
+    const Scaffold(body: Center(child: Text("Library"))),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Stack(
+          children: _screens
+              .asMap()
+              .map((index, screen) => MapEntry(
+                  index,
+                  Offstage(
+                    offstage: _selectedIndex != index,
+                    child: screen,
+                  )))
+              .values
+              .toList()),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: (index) => setState(() => _selectedIndex = index),
         selectedFontSize: 10.0,
         unselectedFontSize: 10.0,
-        items: [
+        //* The reason for putting const below for items list is because it will not re-render the items list
+        //* whenever the build method is recalled
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             activeIcon: Icon(Icons.home),
