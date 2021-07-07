@@ -9,12 +9,12 @@ class NavScreen extends StatefulWidget {
 class _NavScreenState extends State<NavScreen> {
   int _selectedIndex = 0;
 
-  final _screens = [
+  final List<Widget> _screens = <Widget>[
     HomeScreen(),
-    const Scaffold(body: Center(child: Text("Explore"))),
-    const Scaffold(body: Center(child: Text("Add"))),
-    const Scaffold(body: Center(child: Text("Subscriptions"))),
-    const Scaffold(body: Center(child: Text("Library"))),
+    const Scaffold(body: Center(child: Text('Explore'))),
+    const Scaffold(body: Center(child: Text('Add'))),
+    const Scaffold(body: Center(child: Text('Subscriptions'))),
+    const Scaffold(body: Center(child: Text('Library'))),
   ];
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _NavScreenState extends State<NavScreen> {
       body: Stack(
           children: _screens
               .asMap()
-              .map((index, screen) => MapEntry(
+              .map((int index, Widget screen) => MapEntry<int, Offstage>(
                   index,
                   Offstage(
                     offstage: _selectedIndex != index,
@@ -33,12 +33,12 @@ class _NavScreenState extends State<NavScreen> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
+        onTap: (int index) => setState(() => _selectedIndex = index),
         selectedFontSize: 10.0,
         unselectedFontSize: 10.0,
         //* The reason for putting const below for items list is because it will not re-render the items list
         //* whenever the build method is recalled
-        items: const [
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             activeIcon: Icon(Icons.home),
