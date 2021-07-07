@@ -11,7 +11,7 @@ class CustomSliverAppBar extends StatelessWidget {
         padding: const EdgeInsets.only(left: 12),
         child: Image.asset('assets/yt_logo_dark.png'),
       ),
-      actions: [
+      actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.cast),
           onPressed: () {},

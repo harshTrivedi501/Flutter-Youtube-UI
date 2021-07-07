@@ -1,13 +1,13 @@
 class User {
-  final String username;
-  final String profileImageUrl;
-  final String subscribers;
-
   const User({
     required this.username,
     required this.profileImageUrl,
     required this.subscribers,
   });
+
+  final String username;
+  final String profileImageUrl;
+  final String subscribers;
 }
 
 const User currentUser = User(
@@ -18,16 +18,6 @@ const User currentUser = User(
 );
 
 class Video {
-  final String id;
-  final User author;
-  final String title;
-  final String thumbnailUrl;
-  final String duration;
-  final DateTime timestamp;
-  final String viewCount;
-  final String likes;
-  final String dislikes;
-
   const Video({
     required this.id,
     required this.author,
@@ -39,9 +29,19 @@ class Video {
     required this.likes,
     required this.dislikes,
   });
+
+  final String id;
+  final User author;
+  final String title;
+  final String thumbnailUrl;
+  final String duration;
+  final DateTime timestamp;
+  final String viewCount;
+  final String likes;
+  final String dislikes;
 }
 
-final List<Video> videos = [
+final List<Video> videos = <Video>[
   Video(
     id: 'x606y4QWrxo',
     author: currentUser,
@@ -78,7 +78,7 @@ final List<Video> videos = [
   ),
 ];
 
-final List<Video> suggestedVideos = [
+final List<Video> suggestedVideos = <Video>[
   Video(
     id: 'rJKN_880b-M',
     author: currentUser,
