@@ -15,14 +15,17 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  SliverList _buildListOfVideos() {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          final Video video = videos[index];
-          return VideoCard(video: video);
-        },
-        childCount: videos.length,
+  SliverPadding _buildListOfVideos() {
+    return SliverPadding(
+      padding: const EdgeInsets.only(bottom: 60.0),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) {
+            final Video video = videos[index];
+            return VideoCard(video: video);
+          },
+          childCount: videos.length,
+        ),
       ),
     );
   }
